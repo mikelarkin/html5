@@ -1,0 +1,78 @@
+
+<canvas id="myCanvas" width="1000" height="600" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+</canvas>
+<div>Angle: <span id="angle"></span> degrees, Location: (<span id="x-pos"></span>, <span id="y-pos"></span>)</div>
+
+X: <input type="text" id="x" value="5">
+Y: <input type="text" id="y" value="5">
+<input type="button" value="Reload" onclick="init();"/>
+
+<script type="text/javascript">
+    var radius = 15;
+    var width = 1000;
+    var height = 600;
+    var x = 400;
+    var y = 500;
+    var dx = parseInt(document.getElementById("x").value);
+    var dy = parseInt(document.getElementById("y").value);
+
+    function init() {
+        dx = parseInt(document.getElementById("x").value);
+        dy = parseInt(document.getElementById("y").value);
+
+        // Call the function every once and a while
+        setInterval("move()", 40);
+    }
+
+    function move() {
+
+        // Check for collisions with the edges
+        if (x > (width - radius)) {
+            dx = Math.abs(dx) * -1;
+        } // Make it go left
+        if (x < radius) {
+            dx = Math.abs(dx);
+        } // Make it go right
+        if (y > (height - radius)) {
+            dy = Math.abs(dy) * -1;
+        } // Make it go up
+        if (y < radius) {
+            dy = Math.abs(dy)
+        } // Make it go down
+
+        // Move the ball
+        x += dx;
+        y += dy;
+
+        // Update the screen
+        draw(x, y);
+
+        // Update the angle
+        document.getElementById("angle").innerHTML = Math.round(Math.atan(dy / dx) * (180 / Math.PI));
+        document.getElementById("x-pos").innerHTML = x;
+        document.getElementById("y-pos").innerHTML = y;
+
+    }
+
+    function draw(x, y) {
+
+        // Get our canvas
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
+        // Erase the board
+        ctx.clearRect(0, 0, width, height);
+
+        // Draw the circle
+        ctx.fillStyle = "#336699";
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    init();
+
+
+</script>
