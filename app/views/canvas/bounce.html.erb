@@ -2,11 +2,13 @@
     <h2>A Simple Bouncing Ball with Adjustable Slope</h2>
 <% end %>
 
-<div>Angle: <span id="angle"></span> degrees, Location: (<span id="x-pos"></span>, <span id="y-pos"></span>)</div>
+<div id="controls">
+  <div>Angle: <span id="angle"></span> degrees, Location: (<span id="x-pos"></span>, <span id="y-pos"></span>)</div>
 
-X: <input type="text" id="x" value="10">
-Y: <input type="text" id="y" value="5">
-<input type="button" value="Reload" onclick="init();"/>
+  X: <input type="text" id="x" value="10">
+  Y: <input type="text" id="y" value="5">
+  <input type="button" value="Reload" onclick="init();"/>
+</div>
 
 <script type="text/javascript">
     var radius = 15;
@@ -58,7 +60,7 @@ Y: <input type="text" id="y" value="5">
     function draw(x, y) {
 
         // Get our canvas
-        var c = document.getElementById("myCanvas");
+        var c = document.getElementById("canvas");
         var ctx = c.getContext("2d");
 
         // Erase the board

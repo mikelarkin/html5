@@ -12,7 +12,7 @@
     <%= yield :title %>
   </div>
   <div id="main">
-    <canvas id="myCanvas" width="1000" height="600">
+    <canvas id="canvas" width="<%= @canvas_width %>" height="<%= @canvas_height %>">
       Your browser does not support the canvas element.
     </canvas>
     <%= yield %>

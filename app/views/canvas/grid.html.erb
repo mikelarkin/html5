@@ -1,0 +1,52 @@
+<% content_for :title do %>
+    <h2>An Example of ways to travel a grid.</h2>
+<% end %>
+
+<div id="controls">
+  <input type="button" value="Reload" onclick="init();"/>
+</div>
+
+
+<script type="text/javascript" language="javascript">
+    var width = <%= @canvas_width %>;
+    var height = <%= @canvas_height %>;
+    var boxes = 13;
+    var offset = 3;
+    var boxsize = width / 14;
+
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+
+    var grid = [];
+
+
+    function init() {
+
+        for (var i = 0; i < boxes; i++) {
+            grid[i] = [];
+            for (var j = 0; j < boxes; j++) {
+                // Initialize the array with all 0s
+
+                grid[i][j] = 0;
+                drawSquare(i,j)
+            }
+        }
+
+        // Reset the timers
+
+    }
+
+    function drawSquare(x, y) {
+        if (grid[x][y] == 1) {
+            context.fillStyle = "#66FF33";
+        } else {
+            context.fillStyle = "#336633";
+        }
+        context.fillRect((x * boxsize) + (x * offset) + offset, (y * boxsize) + (y * offset) + offset, boxsize, boxsize);
+    }
+
+
+    init();
+
+
+</script>

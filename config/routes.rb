@@ -1,6 +1,7 @@
 Html5::Application.routes.draw do
 
   match 'canvas/bounce' => 'canvas#bounce', :as => :bounce
+  match 'canvas/grid' => 'canvas#grid', :as => :grid
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
